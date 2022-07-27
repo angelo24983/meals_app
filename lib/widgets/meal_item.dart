@@ -16,6 +16,46 @@ class MealItem extends StatelessWidget {
     @required this.affordability,
   });
 
+  String get complexityText {
+    String result = 'Unknown';
+
+    switch (this.complexity) {
+      case Complexity.Hard:
+        result = 'Hard';
+        break;
+      case Complexity.Challenging:
+        result = 'Challenging';
+        break;
+      case Complexity.Simple:
+        result = 'Simple';
+        break;
+      default:
+        break;
+    }
+
+    return result;
+  }
+
+  String get affordabilityText {
+    String result = 'Unknown';
+
+    switch (this.affordability) {
+      case Affordability.Affordable:
+        result = 'Affordable';
+        break;
+      case Affordability.Pricey:
+        result = 'Pricey';
+        break;
+      case Affordability.Luxurious:
+        result = 'Expensive';
+        break;
+      default:
+        break;
+    }
+
+    return result;
+  }
+
   void selectMeal() {}
   @override
   Widget build(BuildContext context) {
@@ -43,7 +83,75 @@ class MealItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                Positioned(
+                  bottom: 20,
+                  right: 10,
+                  child: Container(
+                    width: 300,
+                    color: Colors.black54,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 20,
+                    ),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.schedule,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text(
+                        '$duration min',
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.work,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text(
+                        '$complexityText',
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.attach_money,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text(
+                        '$affordabilityText',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
